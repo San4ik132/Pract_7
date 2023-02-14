@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 
 namespace practice_7
 {
@@ -105,3 +104,8 @@ namespace practice_7
 
     }
 }
+
+
+// 1. Чтение всего - хуйня
+// 2. Закономерность. Не надо читать колличества блюд, а нужно читать остальные данные
+// 3. При чтении сразу вносить в dicshonory
