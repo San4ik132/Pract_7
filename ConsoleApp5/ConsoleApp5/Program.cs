@@ -30,8 +30,8 @@ namespace practice_7
             for (int i = 0; i < oper.Length; i++) 
                 oper[i]?.Replace(" ", "");
 
-            foreach (string ttt in oper) 
-                Text.Add(ttt.ToString());
+            foreach (string i in oper) 
+                Text.Add(i.ToString());
 
             return Text;
         }
@@ -47,7 +47,7 @@ namespace practice_7
         {
             int index = ListDate.IndexOf("\r");
 
-            ListDate.RemoveRange(0, index+1);
+            ListDate.RemoveRange(0, index + 1);
 
             return ListDate;
         }
@@ -56,8 +56,8 @@ namespace practice_7
         {
             List<string> SaveDataList = new List<string>();
 
-            foreach (string ttt in _listStringsData())
-                SaveDataList.Add(ttt);
+            foreach (string i in _listStringsData())
+                SaveDataList.Add(i);
             
             List<string> List1 = new List<string>();
             List<string> List2 = new List<string>();
@@ -84,8 +84,8 @@ namespace practice_7
 
             _removeListStringsData(SaveDataList);
 
-            foreach (string ttt in List1)
-                Console.WriteLine(ttt);
+            foreach (string i in List1)
+                Console.WriteLine(i);
 
             Dictionary<string, string> cook_book = new Dictionary<string, string>();
         }
