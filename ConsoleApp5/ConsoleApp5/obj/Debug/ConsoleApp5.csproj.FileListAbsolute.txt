@@ -6,3 +6,11 @@ D:\C++\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.csproj.SuggestedBindingRedi
 D:\C++\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.csproj.CoreCompileInputs.cache
 D:\C++\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.exe
 D:\C++\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.pdb
+C:\Users\Ilya\Source\Repos\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\bin\Debug\ConsoleApp5.exe.config
+C:\Users\Ilya\Source\Repos\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\bin\Debug\ConsoleApp5.exe
+C:\Users\Ilya\Source\Repos\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\bin\Debug\ConsoleApp5.pdb
+C:\Users\Ilya\Source\Repos\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.csproj.AssemblyReference.cache
+C:\Users\Ilya\Source\Repos\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.csproj.SuggestedBindingRedirects.cache
+C:\Users\Ilya\Source\Repos\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.csproj.CoreCompileInputs.cache
+C:\Users\Ilya\Source\Repos\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.exe
+C:\Users\Ilya\Source\Repos\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Debug\ConsoleApp5.pdb

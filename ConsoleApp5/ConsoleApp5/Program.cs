@@ -18,6 +18,7 @@ namespace practice_7
             }
             return text;
         }
+
         private static List<string> ListStringsData()
         {
             //разбиение на подстроки
