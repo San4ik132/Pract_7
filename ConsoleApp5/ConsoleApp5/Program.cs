@@ -6,103 +6,96 @@ namespace practice_7
 {
     internal class Program
     {
-        private static string FileData()
+        private static string _fileData()
         {
             string text = string.Empty;
             string path = "dishes.txt";
+
             //чтение
             using (StreamReader reader = new StreamReader(path))
             {
                 text = reader.ReadToEnd();
                 reader.Close();
             }
+
             return text;
         }
 
-        private static List<string> ListStringsData()
+        private static List<string> _listStringsData()
         {
             //разбиение на подстроки
-            List<string> Text = new List<string> { };
-            string[] oper = FileData().Split('\n');
-            for (int i = 0; i < oper.Length; i++) oper[i]?.Replace(" ", "");
-            foreach (string ttt in oper) Text.Add(ttt.ToString());
+            List<string> Text = new List<string>();
+            string[] oper = _fileData().Split('\n');
+
+            for (int i = 0; i < oper.Length; i++) 
+                oper[i]?.Replace(" ", "");
+
+            foreach (string ttt in oper) 
+                Text.Add(ttt.ToString());
+
             return Text;
         }
-        private static int IndividualDishes(List<string> ListDate)
+
+        private static int _individualDishes(List<string> ListDate)
         {
-           
-            int index = ListDate.IndexOf("\r");      
+            int index = ListDate.IndexOf("\r");  
+            
             return index;
         }
 
-        private static List<string> RemoveListStringsData(List<string> ListDate)
+        private static List<string> _removeListStringsData(List<string> ListDate)
         {
             int index = ListDate.IndexOf("\r");
+
             ListDate.RemoveRange(0, index+1);
+
             return ListDate;
         }
-        private static void SaveDataList()
+
+        private static void _saveDataList()
         {
-            List<string> SaveDataList = new List<string> { };
-            foreach (string ttt in ListStringsData())
-            {
+            List<string> SaveDataList = new List<string>();
+
+            foreach (string ttt in _listStringsData())
                 SaveDataList.Add(ttt);
-            }
             
-            List<string> List1 = new List<string> { };
-            List<string> List2 = new List<string> { };
-            List<string> List3 = new List<string> { };
-            List<string> List4 = new List<string> { };
+            List<string> List1 = new List<string>();
+            List<string> List2 = new List<string>();
+            List<string> List3 = new List<string>();
+            List<string> List4 = new List<string>();
             
-            for (int i = 0; i < IndividualDishes(SaveDataList); i++){
+            for (int i = 0; i < _individualDishes(SaveDataList); i++)
                 List1.Add(SaveDataList[i]);
-            }
-        
-            RemoveListStringsData(SaveDataList);
 
-            for (int i = 0; i < IndividualDishes(SaveDataList); i++)
-            {
+            for (int i = 0; i < _individualDishes(SaveDataList); i++)
                 List2.Add(SaveDataList[i]);
-            }
-         
-            RemoveListStringsData(SaveDataList);
 
-            for (int i = 0; i < IndividualDishes(SaveDataList); i++)
-            {
+            for (int i = 0; i < _individualDishes(SaveDataList); i++)
                 List3.Add(SaveDataList[i]);
-            }
-
-            RemoveListStringsData(SaveDataList);
-
 
             for (int i = 0; i < SaveDataList.Count; i++)
-            {
                 List4.Add(SaveDataList[i]);
-            }
 
-            RemoveListStringsData(SaveDataList);
+            _removeListStringsData(SaveDataList);
+
+            _removeListStringsData(SaveDataList);
+
+            _removeListStringsData(SaveDataList);
+
+            _removeListStringsData(SaveDataList);
 
             foreach (string ttt in List1)
-            {
                 Console.WriteLine(ttt);
-            }
-                Dictionary<string, string> cook_book = new Dictionary<string,string > { };
 
-
-
+            Dictionary<string, string> cook_book = new Dictionary<string, string>();
         }
-        static void Main()
+
+
+        // главный класс
+        static void Main(string[] args)
         {
-
-
-
-            SaveDataList();
-
-
-
+            _saveDataList();
         }
-
-
     }
 }
 
