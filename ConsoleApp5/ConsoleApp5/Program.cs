@@ -6,7 +6,7 @@ namespace practice_7
 {
     internal class Program
     {
-        static string FileData()
+        private static string FileData()
         {
             string text = string.Empty;
             string path = "dishes.txt";
@@ -18,7 +18,7 @@ namespace practice_7
             }
             return text;
         }
-        static List<string> ListStringsData()
+        private static List<string> ListStringsData()
         {
             //разбиение на подстроки
             List<string> Text = new List<string> { };
@@ -27,20 +27,20 @@ namespace practice_7
             foreach (string ttt in oper) Text.Add(ttt.ToString());
             return Text;
         }
-        static int IndividualDishes(List<string> ListDate)
+        private static int IndividualDishes(List<string> ListDate)
         {
            
             int index = ListDate.IndexOf("\r");      
             return index;
         }
 
-        static List<string> RemoveListStringsData(List<string> ListDate)
+        private static List<string> RemoveListStringsData(List<string> ListDate)
         {
             int index = ListDate.IndexOf("\r");
             ListDate.RemoveRange(0, index+1);
             return ListDate;
         }
-        static void SaveDataList()
+        private static void SaveDataList()
         {
             List<string> SaveDataList = new List<string> { };
             foreach (string ttt in ListStringsData())
