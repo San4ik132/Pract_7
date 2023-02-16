@@ -1,0 +1,8 @@
+D:\IT-StartUp\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\bin\Release\ConsoleApp5.exe.config
+D:\IT-StartUp\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\bin\Release\ConsoleApp5.exe
+D:\IT-StartUp\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\bin\Release\ConsoleApp5.pdb
+D:\IT-StartUp\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Release\ConsoleApp5.csproj.AssemblyReference.cache
+D:\IT-StartUp\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Release\ConsoleApp5.csproj.SuggestedBindingRedirects.cache
+D:\IT-StartUp\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Release\ConsoleApp5.csproj.CoreCompileInputs.cache
+D:\IT-StartUp\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Release\ConsoleApp5.exe
+D:\IT-StartUp\San4ik132\Pract_7\ConsoleApp5\ConsoleApp5\obj\Release\ConsoleApp5.pdb

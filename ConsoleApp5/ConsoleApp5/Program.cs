@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Xml.Linq;
 
 namespace practice_7
 {
@@ -18,7 +21,7 @@ namespace practice_7
             string path = "dishes.txt";
             var cook_book = new Dictionary<string, List<Ingredient>> { };
             //чтение и сапись в словарь
-            using (StreamReader reader = new StreamReader(path))
+           using (StreamReader reader = new StreamReader(path))
             {
                 while (!reader.EndOfStream)
                 {
@@ -53,22 +56,85 @@ namespace practice_7
 
             return cook_book;
         }
+
         // Задание №2
         struct dishesPersons
         {
 
-            public int quantity;
-            public string measure;
+            public int quan;
+            public string meas;
         }
-        static void get_shop_list_by_dishes(List<string> dishes, int person_count)
+        static Dictionary<string, List<dishesPersons>> get_shop_list_by_dishes(List<string> dishes, int person_count)
         {
+            
+             var kapibara = new List<string> { };
+            var dishesPersons = new Dictionary<string, List<dishesPersons>> { };
+            //foreach (var ttt in dishes)
+            //{
+            //    foreach (var ppp in FileData())
+            //    {
+            //        if (ttt != ppp.Key)
+            //        {
+            //            Console.WriteLine($"Такого  блюда {ttt} нет в файле");
+
+            //        }
+            //        break;
+            //    }
+
+            //}
+
+
+
+
+
+            var cook_book = FileData();
+
+            foreach (var ttt in dishes)
+            {
+                foreach (var ppp in cook_book)
+                {
+               
+                    if (ttt == ppp.Key)
+                    {
+                        
+                        var count = ppp.Value.Count;
+                        var names = string.Empty;
+                        var quans = 0;
+                        var meass= string.Empty;
+                        foreach (var s in ppp.Value)
+                        {
+                            names = s.name;
+                            quans = s.quantity;
+                            meass = s.measure;
+                        }
+                     
+                        var ingredient = new List<dishesPersons> { };
+                        for (int i = 0; i < count; i++)
+                        {
+                            ingredient.Add(new dishesPersons
+                            {
+                                quan = quans * person_count,
+                                meas = meass,
+
+                            });
+                            
+                        }
+                        dishesPersons.Add(names, ingredient);
+
+                    }
+
+
+                }
+            }
+            return dishesPersons;
 
         }
 
         static void Main()
         {
             // чисто для проверки данных в словаре
-            foreach (var ttt in FileData())
+            var cook_book = FileData();
+            foreach (var ttt in cook_book)
             {
                 Console.WriteLine(ttt.Key);
                 Console.WriteLine(ttt.Value.Count);
@@ -77,6 +143,18 @@ namespace practice_7
                     Console.WriteLine($"{ppp.name} | {ppp.quantity} | {ppp.measure}");
                 }
                 Console.WriteLine();
+            }
+
+            //Console.WriteLine(get_shop_list_by_dishes(new List<string> { "Омлет" }, 2));
+            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос"}, 2);
+            foreach (var ttt in dishes)
+            {
+                Console.Write($"{ttt.Key} | ");
+                foreach (var ppp in ttt.Value)
+                {
+                    Console.WriteLine($"{ppp.quan} | {ppp.meas}");
+                }
+                //Console.WriteLine();
             }
 
         }
