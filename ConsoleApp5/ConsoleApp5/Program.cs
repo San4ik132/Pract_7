@@ -6,104 +6,83 @@ namespace practice_7
 {
     internal class Program
     {
-        private static string FileData()
+        struct Ingredient
         {
-            string text = string.Empty;
+            public string name;
+            public int quantity;
+            public string measure;
+        }
+
+        static Dictionary<string, List<Ingredient>> FileData()
+        {
             string path = "dishes.txt";
-            //чтение
+            var cook_book = new Dictionary<string, List<Ingredient>> { };
+            //чтение и сапись в словарь
             using (StreamReader reader = new StreamReader(path))
             {
-                text = reader.ReadToEnd();
+                while (!reader.EndOfStream)
+                {
+                    // считываю первую страку с названием блюда и заношу в переменную name
+                    var name = reader.ReadLine();
+                    // указываю на пустые строки
+                    if (string.IsNullOrEmpty(name)) continue;
+                    // считаю кол-во ингридиентов для определения их в структуре
+                    var quantity = int.Parse(reader.ReadLine());
+                    // созаю переменную в которой храню структуру 
+                    var ingredients = new List<Ingredient> { };
+                    // цикл для определения кол-во ингридиентов
+                    for (int i = 0; i < quantity; i++)
+                    {
+                        // в переменную закидываю строки между символом '|' кроме самого символа т.ею обризаю их
+                        var ingredient = reader.ReadLine().Split('|');
+                        // добавляю в структуру данные из переменных
+                        ingredients.Add(new Ingredient
+                        {
+                            name = ingredient[0].Trim(),
+                            quantity = int.Parse(ingredient[1].Trim()),
+                            measure = ingredient[2].Trim()
+                        });
+
+                    }
+                    //добавляю всё в словарь
+                    cook_book.Add(name, ingredients);
+                }
+
                 reader.Close();
             }
-            return text;
-        }
 
-        private static List<string> ListStringsData()
+            return cook_book;
+        }
+        // Задание №2
+        struct dishesPersons
         {
-            //разбиение на подстроки
-            List<string> Text = new List<string> { };
-            string[] oper = FileData().Split('\n');
-            for (int i = 0; i < oper.Length; i++) oper[i]?.Replace(" ", "");
-            foreach (string ttt in oper) Text.Add(ttt.ToString());
-            return Text;
+
+            public int quantity;
+            public string measure;
         }
-        private static int IndividualDishes(List<string> ListDate)
+        static void get_shop_list_by_dishes(List<string> dishes, int person_count)
         {
-           
-            int index = ListDate.IndexOf("\r");      
-            return index;
-        }
-
-        private static List<string> RemoveListStringsData(List<string> ListDate)
-        {
-            int index = ListDate.IndexOf("\r");
-            ListDate.RemoveRange(0, index+1);
-            return ListDate;
-        }
-        private static void SaveDataList()
-        {
-            List<string> SaveDataList = new List<string> { };
-            foreach (string ttt in ListStringsData())
-            {
-                SaveDataList.Add(ttt);
-            }
-            
-            List<string> List1 = new List<string> { };
-            List<string> List2 = new List<string> { };
-            List<string> List3 = new List<string> { };
-            List<string> List4 = new List<string> { };
-            
-            for (int i = 0; i < IndividualDishes(SaveDataList); i++){
-                List1.Add(SaveDataList[i]);
-            }
-        
-            RemoveListStringsData(SaveDataList);
-
-            for (int i = 0; i < IndividualDishes(SaveDataList); i++)
-            {
-                List2.Add(SaveDataList[i]);
-            }
-         
-            RemoveListStringsData(SaveDataList);
-
-            for (int i = 0; i < IndividualDishes(SaveDataList); i++)
-            {
-                List3.Add(SaveDataList[i]);
-            }
-
-            RemoveListStringsData(SaveDataList);
-
-
-            for (int i = 0; i < SaveDataList.Count; i++)
-            {
-                List4.Add(SaveDataList[i]);
-            }
-
-            RemoveListStringsData(SaveDataList);
-
-            foreach (string ttt in List1)
-            {
-                Console.WriteLine(ttt);
-            }
-                Dictionary<string, string> cook_book = new Dictionary<string,string > { };
-
-
 
         }
+
         static void Main()
         {
-
-
-
-            SaveDataList();
-
-
+            // чисто для проверки данных в словаре
+            foreach (var ttt in FileData())
+            {
+                Console.WriteLine(ttt.Key);
+                Console.WriteLine(ttt.Value.Count);
+                foreach (var ppp in ttt.Value)
+                {
+                    Console.WriteLine($"{ppp.name} | {ppp.quantity} | {ppp.measure}");
+                }
+                Console.WriteLine();
+            }
 
         }
 
-
     }
+
 }
 
 
