@@ -142,7 +142,7 @@ namespace practice_7
             }
 
             //Console.WriteLine(get_shop_list_by_dishes(new List<string> { "Омлет" }, 2));
-            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет"}, 2);
+            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет"}, 100);
             foreach (var ttt in dishes)
             {
                 Console.Write($"{ttt.Key} | ");
