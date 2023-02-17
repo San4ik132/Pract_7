@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Xml.Linq;
 
 namespace practice_7
 {
@@ -89,38 +88,35 @@ namespace practice_7
 
             var cook_book = FileData();
 
-            foreach (var ttt in dishes)
+            foreach (var ppp in cook_book)
             {
-                foreach (var ppp in cook_book)
+                foreach (var ttt in dishes)
                 {
                
                     if (ttt == ppp.Key)
                     {
-                        
-                        var count = ppp.Value.Count;
-                        var names = string.Empty;
-                        var quans = 0;
-                        var meass= string.Empty;
-                        foreach (var s in ppp.Value)
+                       
+                        //var count = 0;
+                        //var nams = string.Empty;
+                        foreach (var ooo in ppp.Value)
                         {
-                            names = s.name;
-                            quans = s.quantity;
-                            meass = s.measure;
-                        }
-                     
-                        var ingredient = new List<dishesPersons> { };
-                        for (int i = 0; i < count; i++)
-                        {
-                            ingredient.Add(new dishesPersons
+                            var count = ppp.Value.Count;
+                            var nams = ooo.name;
+                            var ingredient = new List<dishesPersons> { };
+                            for (int i = 0; i < count; i++)
                             {
-                                quan = quans * person_count,
-                                meas = meass,
+                                ingredient.Add(new dishesPersons
+                                {
+                                    quan = ooo.quantity*person_count,
+                                    meas = ooo.measure,
 
-                            });
-                            
+                                });
+                                break;
+                            }
+                            dishesPersons.Add(nams, ingredient);
                         }
-                        dishesPersons.Add(names, ingredient);
 
+                     
                     }
 
 
@@ -146,7 +142,7 @@ namespace practice_7
             }
 
             //Console.WriteLine(get_shop_list_by_dishes(new List<string> { "Омлет" }, 2));
-            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос"}, 2);
+            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет"}, 2);
             foreach (var ttt in dishes)
             {
                 Console.Write($"{ttt.Key} | ");
