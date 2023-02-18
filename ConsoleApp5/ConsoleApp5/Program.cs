@@ -96,30 +96,34 @@ namespace practice_7
                     if (ttt == ppp.Key)
                     {
 
-                        //var count = 0;
-                        //var nams = string.Empty;
                         foreach (var ooo in ppp.Value)
                         {
-                            var count = ppp.Value.Count;
                             var nams = ooo.name;
+                            var k = 0;
+                            var r = string.Empty;
                             var ingredient = new List<dishesPersonss> { };
                             foreach (var i in dishesPersons)
                             {
-                                if (i.Key == nams) nams = string.Empty;
-                            }
-                            for (int j = 0; j < count; j++)
-                            {
-                                ingredient.Add(new dishesPersonss
+                                if (i.Key == nams)
                                 {
-                                    quan = ooo.quantity * person_count,
-                                    meas = ooo.measure,
+                                    r = i.Key;
+                                    nams = "Remove";
+                                
+                                }
 
-                                });
-                                break;
                             }
+                            ingredient.Add(new dishesPersonss
+                            {
+                                quan = ooo.quantity  * person_count,
+                                meas = ooo.measure,
 
+                            });
+                         
 
                             dishesPersons.Add(nams, ingredient);
+                     
+                            
+                            dishesPersons.Remove("Remove");
                         }
 
 
@@ -128,6 +132,7 @@ namespace practice_7
 
                 }
             }
+            
             return dishesPersons;
 
         }
@@ -148,7 +153,7 @@ namespace practice_7
             }
 
             //Console.WriteLine(get_shop_list_by_dishes(new List<string> { "Омлет" }, 2));
-            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос", "Запеченный картофель" }, 2);
+            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос", "Утка по-пекински" }, 2);
             foreach (var ttt in dishes)
             {
                 Console.Write($"{ttt.Key} | ");
