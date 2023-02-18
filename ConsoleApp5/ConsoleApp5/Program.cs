@@ -20,7 +20,7 @@ namespace practice_7
             string path = "dishes.txt";
             var cook_book = new Dictionary<string, List<Ingredient>> { };
             //чтение и сапись в словарь
-           using (StreamReader reader = new StreamReader(path))
+            using (StreamReader reader = new StreamReader(path))
             {
                 while (!reader.EndOfStream)
                 {
@@ -57,17 +57,17 @@ namespace practice_7
         }
 
         // Задание №2
-        struct dishesPersons
+        struct dishesPersonss
         {
 
             public int quan;
             public string meas;
         }
-        static Dictionary<string, List<dishesPersons>> get_shop_list_by_dishes(List<string> dishes, int person_count)
+        static Dictionary<string, List<dishesPersonss>> get_shop_list_by_dishes(List<string> dishes, int person_count)
         {
-            
-             var kapibara = new List<string> { };
-            var dishesPersons = new Dictionary<string, List<dishesPersons>> { };
+
+            var kapibara = new List<string> { };
+            var dishesPersons = new Dictionary<string, List<dishesPersonss>> { };
             //foreach (var ttt in dishes)
             //{
             //    foreach (var ppp in FileData())
@@ -92,31 +92,37 @@ namespace practice_7
             {
                 foreach (var ttt in dishes)
                 {
-               
+
                     if (ttt == ppp.Key)
                     {
-                       
+
                         //var count = 0;
                         //var nams = string.Empty;
                         foreach (var ooo in ppp.Value)
                         {
                             var count = ppp.Value.Count;
                             var nams = ooo.name;
-                            var ingredient = new List<dishesPersons> { };
-                            for (int i = 0; i < count; i++)
+                            var ingredient = new List<dishesPersonss> { };
+                            foreach (var i in dishesPersons)
                             {
-                                ingredient.Add(new dishesPersons
+                                if (i.Key == nams) nams = string.Empty;
+                            }
+                            for (int j = 0; j < count; j++)
+                            {
+                                ingredient.Add(new dishesPersonss
                                 {
-                                    quan = ooo.quantity*person_count,
+                                    quan = ooo.quantity * person_count,
                                     meas = ooo.measure,
 
                                 });
                                 break;
                             }
+
+
                             dishesPersons.Add(nams, ingredient);
                         }
 
-                     
+
                     }
 
 
@@ -142,7 +148,7 @@ namespace practice_7
             }
 
             //Console.WriteLine(get_shop_list_by_dishes(new List<string> { "Омлет" }, 2));
-            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет"},2);
+            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос", "Запеченный картофель" }, 2);
             foreach (var ttt in dishes)
             {
                 Console.Write($"{ttt.Key} | ");
