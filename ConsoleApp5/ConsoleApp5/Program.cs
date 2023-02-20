@@ -67,26 +67,10 @@ namespace practice_7
         {
 
             var kapibara = new List<string> { };
-            var dishesPersons = new Dictionary<string, List<dishesPersonss>> { };
-            //foreach (var ttt in dishes)
-            //{
-            //    foreach (var ppp in FileData())
-            //    {
-            //        if (ttt != ppp.Key)
-            //        {
-            //            Console.WriteLine($"Такого  блюда {ttt} нет в файле");
-
-            //        }
-            //        break;
-            //    }
-
-            //}
-
-
-
-            // изменил  два клуча не вписывается
-
             var cook_book = FileData();
+            var dishesPersons = new Dictionary<string, List<dishesPersonss>> { };
+      
+            // Хз, работае
 
             foreach (var ppp in cook_book)
             {
@@ -101,34 +85,41 @@ namespace practice_7
                             var nams = ooo.name;
                             var k = 0;
                             var r = string.Empty;
+                            var m = string.Empty;
                             var ingredient = new List<dishesPersonss> { };
                             foreach (var i in dishesPersons)
                             {
                                 if (i.Key == nams)
                                 {
+                                    k = ooo.quantity;
                                     r = i.Key;
                                     nams = "Remove";
-                                
+                                    m = ooo.measure;
+                                    
                                 }
 
                             }
                             ingredient.Add(new dishesPersonss
                             {
-                                quan = ooo.quantity  * person_count,
+                                quan = ooo.quantity * person_count,
                                 meas = ooo.measure,
 
-                            });
-                         
-
+                            });         
                             dishesPersons.Add(nams, ingredient);
-                     
-                            
+                            var ingredients = new List<dishesPersonss> { };
                             dishesPersons.Remove("Remove");
+                            dishesPersons.Remove(r);
+                            ingredients.Add(new dishesPersonss
+                            {
+                                quan = (ooo.quantity + k) * person_count,
+                                meas = m,
+                            });
+                            dishesPersons.Add(r, ingredients );
+                            dishesPersons.Remove(string.Empty);
+
                         }
 
-
                     }
-
 
                 }
             }
@@ -152,8 +143,8 @@ namespace practice_7
                 Console.WriteLine();
             }
 
-            //Console.WriteLine(get_shop_list_by_dishes(new List<string> { "Омлет" }, 2));
-            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос", "Утка по-пекински" }, 2);
+         
+            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос", "Утка по-пекински", "fkkg"}, 4);
             foreach (var ttt in dishes)
             {
                 Console.Write($"{ttt.Key} | ");
