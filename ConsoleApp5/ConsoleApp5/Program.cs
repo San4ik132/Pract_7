@@ -21,6 +21,7 @@ namespace practice_7
             //чтение и сапись в словарь
             using (StreamReader reader = new StreamReader(path))
             {
+                //#Капибара
                 while (!reader.EndOfStream)
                 {
                     // считываю первую страку с названием блюда и заношу в переменную name
@@ -64,10 +65,11 @@ namespace practice_7
         static Dictionary<string, List<dishesPersons>> get_shop_list_by_dishes(List<string> dishes, int person_count)
         {
 
-            var kapibara = new List<string> { };
+
             var cook_book = FileData();
             var dishesPersons = new Dictionary<string, List<dishesPersons>> { };
             var k = 0;
+            // #Нужен ноутбук
 
             foreach (var kyeDishes in cook_book)
             {
@@ -94,7 +96,7 @@ namespace practice_7
                                 }
 
                             }
-                        
+
                             dishesPersons.Remove(r);
                             ingredient.Add(new dishesPersons
                             {
@@ -108,6 +110,59 @@ namespace practice_7
                 }
             }
             return dishesPersons;
+        }
+
+        static void FileSort()
+        {
+            var CountItems = new List<int>();
+            var name = new List<string>();
+            File.Delete("Finish.txt");
+            DirectoryInfo files = new DirectoryInfo("files");
+            for (int i = 1; i <= files.GetFiles().Length; i++)
+            {
+                int linesCount = 1;
+                int nextLine = '\n';
+                using (var streamReader = new StreamReader(
+                    new BufferedStream(
+                        // буфер на тот случай если файл большого размера
+                        File.OpenRead("files\\" + i + ".txt"), 10 * 1024 * 1024)))
+                {
+                    while (!streamReader.EndOfStream)
+                    {
+                        if (streamReader.Read() == nextLine) linesCount++;
+                    }
+                }
+                //#Ваня лох!
+                CountItems.Add(linesCount);
+                name.Add(i + ".txt");
+            }
+            // сортировка файлов по строкам
+            for (int i = 0; i < CountItems.Count; i++)
+            {
+                for (int j = i + 1; j < CountItems.Count; j++)
+                {
+                    if (CountItems[i] > CountItems[j])
+                    {
+                        int tmp = CountItems[i];
+                        CountItems[i] = CountItems[j];
+                        CountItems[j] = tmp;
+                        string tmp1 = name[i];
+                        name[i] = name[j];
+                        name[j] = tmp1;
+                    }
+                }
+            }
+            // создаю конечный файл с конечными данными
+            for (int i = 0; i < name.Count; i++)
+            {
+                File.AppendAllText("Finish.txt", name[i]);
+                File.AppendAllText("Finish.txt", "\n");
+                File.AppendAllText("Finish.txt", CountItems[i].ToString());
+                File.AppendAllText("Finish.txt", "\n");
+                string tmp = File.ReadAllText("files\\" + name[i]);
+                File.AppendAllText("Finish.txt", tmp);
+                File.AppendAllText("Finish.txt", "\n");
+            }
         }
 
         static void Main()
@@ -134,7 +189,8 @@ namespace practice_7
                     Console.WriteLine($"{ppp.quan} | {ppp.meas}");
             }
 
+            FileSort();
         }
-            
+
     }
 }
