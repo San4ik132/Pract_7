@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace practice_7
 {
@@ -19,6 +17,7 @@ namespace practice_7
         {
             string path = "dishes.txt";
             var cook_book = new Dictionary<string, List<Ingredient>> { };
+
             //чтение и сапись в словарь
             using (StreamReader reader = new StreamReader(path))
             {
@@ -44,7 +43,6 @@ namespace practice_7
                             quantity = int.Parse(ingredient[1].Trim()),
                             measure = ingredient[2].Trim()
                         });
-
                     }
                     //добавляю всё в словарь
                     cook_book.Add(name, ingredients);
@@ -57,75 +55,59 @@ namespace practice_7
         }
 
         // Задание №2
-        struct dishesPersonss
+        struct dishesPersons
         {
-
             public int quan;
             public string meas;
         }
-        static Dictionary<string, List<dishesPersonss>> get_shop_list_by_dishes(List<string> dishes, int person_count)
+
+        static Dictionary<string, List<dishesPersons>> get_shop_list_by_dishes(List<string> dishes, int person_count)
         {
 
             var kapibara = new List<string> { };
             var cook_book = FileData();
-            var dishesPersons = new Dictionary<string, List<dishesPersonss>> { };
-      
-            // Хз, работае
+            var dishesPersons = new Dictionary<string, List<dishesPersons>> { };
+            var k = 0;
 
-            foreach (var ppp in cook_book)
+            foreach (var kyeDishes in cook_book)
             {
-                foreach (var ttt in dishes)
+                foreach (var stringDishes in dishes)
                 {
-
-                    if (ttt == ppp.Key)
+                    if (stringDishes == kyeDishes.Key)
                     {
-
-                        foreach (var ooo in ppp.Value)
+                        foreach (var items in kyeDishes.Value)
                         {
-                            var nams = ooo.name;
-                            var k = 0;
+                            var nams = items.name;
                             var r = string.Empty;
                             var m = string.Empty;
-                            var ingredient = new List<dishesPersonss> { };
+                            var ingredient = new List<dishesPersons> { };
                             foreach (var i in dishesPersons)
                             {
                                 if (i.Key == nams)
                                 {
-                                    k = ooo.quantity;
-                                    r = i.Key;
-                                    nams = "Remove";
-                                    m = ooo.measure;
-                                    
+                                    foreach (var j in i.Value)
+                                    {
+                                        k = j.quan;
+                                        r = nams;
+                                    }
+
                                 }
 
                             }
-                            ingredient.Add(new dishesPersonss
-                            {
-                                quan = ooo.quantity * person_count,
-                                meas = ooo.measure,
-
-                            });         
-                            dishesPersons.Add(nams, ingredient);
-                            var ingredients = new List<dishesPersonss> { };
-                            dishesPersons.Remove("Remove");
+                        
                             dishesPersons.Remove(r);
-                            ingredients.Add(new dishesPersonss
+                            ingredient.Add(new dishesPersons
                             {
-                                quan = (ooo.quantity + k) * person_count,
-                                meas = m,
+                                quan = items.quantity * person_count + k,
+                                meas = items.measure,
                             });
-                            dishesPersons.Add(r, ingredients );
-                            dishesPersons.Remove(string.Empty);
-
+                            k = 0;
+                            dishesPersons.Add(nams, ingredient);
                         }
-
                     }
-
                 }
             }
-            
             return dishesPersons;
-
         }
 
         static void Main()
@@ -136,33 +118,23 @@ namespace practice_7
             {
                 Console.WriteLine(ttt.Key);
                 Console.WriteLine(ttt.Value.Count);
+
                 foreach (var ppp in ttt.Value)
-                {
                     Console.WriteLine($"{ppp.name} | {ppp.quantity} | {ppp.measure}");
-                }
+
                 Console.WriteLine();
             }
-
-         
-            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос", "Утка по-пекински", "fkkg"}, 4);
+            // Вывод функции
+            var dishes = get_shop_list_by_dishes(new List<string> { "Омлет", "Фахитос", "Утка по-пекински" }, 2);
             foreach (var ttt in dishes)
             {
                 Console.Write($"{ttt.Key} | ");
+
                 foreach (var ppp in ttt.Value)
-                {
                     Console.WriteLine($"{ppp.quan} | {ppp.meas}");
-                }
-                //Console.WriteLine();
             }
 
         }
-
+            
     }
-
 }
-
-
-// 1. Чтение всего - хуйня
-// 2. Закономерность. Не надо читать колличества блюд, а нужно читать остальные данные
-// 3. При чтении сразу вносить в dicshonory
-// 4. Ваня лох!
