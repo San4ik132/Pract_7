@@ -80,8 +80,7 @@ namespace practice_7
                         foreach (var items in kyeDishes.Value)
                         {
                             var nams = items.name;
-                            var r = string.Empty;
-                            //var m = string.Empty;
+                            var r = string.Empty;                           
                             var ingredient = new List<dishesPersons> { };
                             foreach (var i in dishesPersons)
                             {
