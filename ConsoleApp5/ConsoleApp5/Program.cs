@@ -81,7 +81,7 @@ namespace practice_7
                         {
                             var nams = items.name;
                             var r = string.Empty;
-                            var m = string.Empty;
+                            //var m = string.Empty;
                             var ingredient = new List<dishesPersons> { };
                             foreach (var i in dishesPersons)
                             {
